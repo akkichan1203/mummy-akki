@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f6d7df">
+<title>For Mummy, From Your Akki ❤️</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+:root{
+  --rose:#d87891; --deep:#8d4057; --cream:#fffaf6; --ink:#33282b;
+  --soft:#f8e9ed; --gold:#c59a52;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:"DM Sans",sans-serif;color:var(--ink)}
+body{
+  background:
+    radial-gradient(circle at 10% 10%, #f8dce4 0 2px, transparent 3px),
+    radial-gradient(circle at 85% 20%, #efd0d9 0 2px, transparent 3px),
+    linear-gradient(135deg,#fffaf6,#fff2f5 55%,#fdf8f1);
+  overflow-x:hidden;
+}
+button{font:inherit}
+#app{min-height:100vh;position:relative}
+.screen{
+  min-height:100vh;display:none;align-items:center;justify-content:center;
+  padding:34px 18px 46px;position:relative;overflow:hidden;
+}
+.screen.active{display:flex;animation:fade .55s ease}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.card{
+  width:min(720px,100%);background:rgba(255,255,255,.76);
+  border:1px solid rgba(141,64,87,.12);border-radius:30px;padding:34px 24px;
+  box-shadow:0 22px 70px rgba(92,44,57,.12);backdrop-filter:blur(12px);
+  text-align:center;position:relative;z-index:2;
+}
+.eyebrow{letter-spacing:.2em;text-transform:uppercase;font-size:11px;color:#a46776;font-weight:700}
+h1,h2{font-family:"Playfair Display",serif;margin:10px 0 14px;color:#673447}
+h1{font-size:clamp(38px,10vw,70px);line-height:1.02}
+h2{font-size:clamp(31px,7vw,48px)}
+p{font-size:16px;line-height:1.75;margin:10px auto;max-width:600px}
+.muted{color:#806f74}
+.primary,.secondary{
+  border:0;border-radius:999px;padding:14px 22px;margin:10px 5px;cursor:pointer;
+  font-weight:700;transition:.2s;box-shadow:0 10px 24px rgba(141,64,87,.14)
+}
+.primary{background:#8d4057;color:white}.secondary{background:white;color:#73394c;border:1px solid #efd4dc}
+.primary:hover,.secondary:hover{transform:translateY(-2px)}
+.gift{
+  width:150px;height:120px;margin:28px auto 30px;position:relative;cursor:pointer;
+  animation:bob 2.5s ease-in-out infinite;
+}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.box{position:absolute;bottom:0;left:18px;width:114px;height:82px;background:#d87891;border-radius:8px 8px 15px 15px;box-shadow:0 15px 25px #c98a9a66}
+.lid{position:absolute;left:10px;top:25px;width:130px;height:25px;background:#bd5f7b;border-radius:8px;z-index:3}
+.ribbon-v{position:absolute;left:65px;top:24px;width:20px;height:84px;background:#f8d37d;z-index:4}
+.ribbon-h{position:absolute;left:18px;top:54px;width:114px;height:17px;background:#f8d37d;z-index:4}
+.bow:before,.bow:after{content:"";position:absolute;top:8px;width:34px;height:26px;background:#f8d37d;border-radius:50% 50% 10% 50%;z-index:5}
+.bow:before{left:42px;transform:rotate(25deg)} .bow:after{right:42px;transform:scaleX(-1) rotate(25deg)}
+.tap{font-size:13px;color:#8d4057;font-weight:700}
+.warning{font-size:30px}
+.checks{text-align:left;max-width:390px;margin:22px auto}
+.check{background:#fff6f8;border-radius:14px;padding:12px 15px;margin:8px 0}
+.photo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:22px 0}
+.photo{
+  min-height:190px;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,#f1d5dc,#fff3e8);
+  position:relative;display:flex;align-items:end;justify-content:center;
+}
+.photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.photo span{position:relative;z-index:1;background:rgba(255,255,255,.9);margin:0 10px 10px;padding:8px 11px;border-radius:12px;font-size:12px;font-weight:700}
+.envelope{
+  width:230px;height:150px;margin:28px auto;position:relative;cursor:pointer;
+  background:#f4cfd9;border-radius:12px;box-shadow:0 15px 30px #8d405722;
+}
+.envelope:before{content:"";position:absolute;inset:0;background:#e9b7c5;clip-path:polygon(0 0,50% 55%,100% 0);border-radius:12px}
+.seal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:#8d4057;color:white;display:grid;place-items:center;z-index:3}
+.letter{display:none;text-align:left;background:#fffdf8;padding:22px;border-radius:18px;border:1px solid #ead9cb}
+.letter.show{display:block;animation:fade .5s ease}
+.letter p{font-size:15px}
+.complaint{background:#fff;border:1px dashed #d5a8b4;border-radius:20px;padding:20px;text-align:left;max-width:480px;margin:20px auto}
+.status{font-weight:800;color:#b34e6a}
+.final-gift{font-size:70px;cursor:pointer;display:inline-block;animation:bob 2.2s infinite}
+.final-note{display:none;margin-top:20px}
+.final-note.show{display:block;animation:fade .7s ease}
+.hearts{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.heart{position:absolute;bottom:-40px;animation:rise linear forwards;opacity:.7}
+@keyframes rise{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+.progress{position:fixed;top:0;left:0;right:0;height:4px;background:#eddce1;z-index:20}
+.progress i{display:block;height:100%;background:#d87891;width:0%;transition:.4s}
+.nav{margin-top:20px}
+.music{position:fixed;right:14px;top:14px;z-index:30;border:0;background:rgba(255,255,255,.86);border-radius:50%;width:44px;height:44px;cursor:pointer;box-shadow:0 5px 18px #00000012}
+.small{font-size:12px}
+@media(max-width:520px){.card{padding:28px 17px;border-radius:25px}.photo-grid{grid-template-columns:1fr 1fr}.photo{min-height:155px}}
+</style>
+</head>
+<body>
+<div id="app">
+<div class="progress"><i id="bar"></i></div>
+<button class="music" id="musicBtn" title="Music">♫</button>
+
+<section class="screen active" id="s1">
+  <div class="hearts"></div>
+  <div class="card">
+    <div class="eyebrow">A tiny surprise from Akki</div>
+    <h1>For Mummy,<br>with all my heart ❤️</h1>
+    <p class="muted">There is something inside this gift. But first… you have to open it yourself.</p>
+    <div class="gift" onclick="go(2)" aria-label="Open gift">
+      <div class="box"></div><div class="lid"></div><div class="ribbon-v"></div><div class="ribbon-h"></div><div class="bow"></div>
+    </div>
+    <div class="tap">TAP THE GIFT 🎁</div>
+  </div>
+</section>
+
+<section class="screen" id="s2">
+  <div class="card">
+    <div class="warning">⚠️</div>
+    <div class="eyebrow">Important verification</div>
+    <h2>Before you continue…</h2>
+    <div class="checks">
+      <div class="check">☑️ You are Mummy</div>
+      <div class="check">☑️ You have scolded Akki at least 1,000 times 😂</div>
+      <div class="check">☑️ You still love Akki after all her arguments ❤️</div>
+    </div>
+    <button class="primary" onclick="go(3)">YES, THAT'S ME 😂</button>
+  </div>
+</section>
+
+<section class="screen" id="s3">
+  <div class="card">
+    <div class="eyebrow">Our memories</div>
+    <h2>Us, being us ❤️</h2>
+    <p class="muted">Replace the images in the <b>photos</b> folder with your own. The filenames are photo1.jpg to photo4.jpg.</p>
+    <div class="photo-grid">
+      <div class="photo"><img src="photos/photo1.jpg" onerror="this.style.display='none'"><span>My favourite headache 😂❤️</span></div>
+      <div class="photo"><img src="photos/photo2.jpg" onerror="this.style.display='none'"><span>Still her Akki 🥹</span></div>
+      <div class="photo"><img src="photos/photo3.jpg" onerror="this.style.display='none'"><span>We fight. We love. Repeat. 😂</span></div>
+      <div class="photo"><img src="photos/photo4.jpg" onerror="this.style.display='none'"><span>Same love, different opinions ❤️</span></div>
+    </div>
+    <button class="primary" onclick="go(4)">ONE THING I WANT TO SAY 💌</button>
+  </div>
+</section>
+
+<section class="screen" id="s4">
+  <div class="card">
+    <div class="eyebrow">A letter from your Akki</div>
+    <h2>Something I've never said properly…</h2>
+    <div class="envelope" onclick="openLetter()"><div class="seal">♥</div></div>
+    <div class="tap">TAP THE ENVELOPE 💌</div>
+    <div class="letter" id="letter">
+      <p>Mummy,</p>
+      <p>I may not always say it, but I know how much you have done for me and Pooju. You had to face everything alone, and still you never stopped taking care of us.</p>
+      <p>We have fought a lot, and sometimes we hurt each other with our words. There were times I couldn't be the daughter you wanted me to be, and that hurts me even today. But I hope you know that it was never because I didn't love you.</p>
+      <p>No matter how many times we fight, your love and care for me have never changed.</p>
+      <p>To everyone I'm Akhila. <b>To you, I'll always be your Akki. ❤️</b></p>
+      <p>Love you, Mummy.</p>
+    </div>
+    <div class="nav"><button class="primary" onclick="go(5)">OKAY… ONE LAST THING 😂</button></div>
+  </div>
+</section>
+
+<section class="screen" id="s5">
+  <div class="card">
+    <div class="eyebrow">Mummy's official complaint box</div>
+    <h2>📋 Case: Akki</h2>
+    <div class="complaint">
+      <p>❌ Akki talks too much.</p>
+      <p>❌ Akki argues too much.</p>
+      <p>❌ Akki doesn't listen.</p>
+      <p>❌ Akki is stubborn.</p>
+      <hr>
+      <p class="status">STATUS: Complaints received.<br>Akki is NOT changing. 😂❤️</p>
+    </div>
+    <p class="muted">Because unfortunately, you're stuck with me forever. 😌</p>
+    <button class="primary" onclick="go(6)">BUT THERE'S ONE MORE THING…</button>
+  </div>
+</section>
+
+<section class="screen" id="s6">
+  <div class="card">
+    <div class="eyebrow">The real gift</div>
+    <h2>One little promise ❤️</h2>
+    <div class="final-gift" onclick="revealFinal()">🎁</div>
+    <p class="tap">TAP TO OPEN</p>
+    <div class="final-note" id="finalNote">
+      <p>My biggest dream is to see you happy and peaceful.</p>
+      <p>You spent so many years taking care of me and Pooju. One day, I want to be the one who takes care of you and gives you all the happiness you deserve.</p>
+      <p>I just want more time with you — more laughs, more memories, and fewer fights.</p>
+      <h2>No matter how old I get,<br>I'll always be your Akki. ❤️</h2>
+      <p><b>P.S.</b> We can continue fighting. I don't think either of us knows how to stop. 😂❤️</p>
+      <button class="secondary" onclick="location.reload()">START AGAIN ↻</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<audio id="audio" loop preload="none"></audio>
+
+<script>
+let current=1;
+const total=6;
+function go(n){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+  current=n;
+  document.getElementById('bar').style.width=((n-1)/(total-1)*100)+'%';
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(n===6) burst();
+}
+function openLetter(){
+  document.getElementById('letter').classList.add('show');
+  burst(18);
+}
+function revealFinal(){
+  document.getElementById('finalNote').classList.add('show');
+  burst(45);
+}
+function burst(count=28){
+  const host=document.querySelector('.screen.active .hearts') || document.body;
+  for(let i=0;i<count;i++){
+    const h=document.createElement('div'); h.className='heart';
+    h.textContent=['❤️','💕','✨','🌸'][Math.floor(Math.random()*4)];
+    h.style.left=Math.random()*100+'%';
+    h.style.fontSize=(12+Math.random()*18)+'px';
+    h.style.animationDuration=(2.5+Math.random()*3)+'s';
+    host.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  }
+}
+document.getElementById('musicBtn').addEventListener('click',()=>{
+  const a=document.getElementById('audio');
+  if(!a.src){ alert('Add your song URL or an MP3 file to the audio element in index.html.'); return; }
+  if(a.paused){a.play(); document.getElementById('musicBtn').textContent='❚❚'}
+  else{a.pause(); document.getElementById('musicBtn').textContent='♫'}
+});
+setTimeout(()=>burst(10),500);
+</script>
+</body>
+</html>
